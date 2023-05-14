@@ -1,7 +1,7 @@
 
 # 현재 폴더의 views를 사용한다.
 from . import views
-from django.urls import path, include
+from django.urls import path
 
 urlpatterns = [
     path('', views.PostList.as_view()),
