@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% block main_area %}
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser or user.is_staff %}
+                        <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>글쓰기</a>
+                {% endif %}
+                {% endif %}
+                <h1>Blog {% if category %} positions with category {{ category }}
+                {% endif %}
+                {% if tag %} positions with tag {{ tag }}
+                {% endif %} </h1>
+
+                {% for p in post_list %}
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                {% if p.head_image %}
+                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+                {% else %}
+                    <img class="card-img-top" src="https://src.hidoc.co.kr/image/lib/2022/5/12/1652337370806_0.jpg" alt="random_image">
+                {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{ p.title}}({{ p.category }})</h2>
+                        <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p>
+                        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ p.created_at}} by
+                        <a href="#">{{ p.author }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+{% endblock %}
+
