@@ -1,2 +1,1 @@
-# CloudProgramming2023
-클라우드 프로그래밍 수업 프로젝트용 저장소
+# AI+X-Intermediate 프로젝트 저장소
