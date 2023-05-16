@@ -94,13 +94,18 @@
         {% if post.tags.exists %}
             <br/>
             <i class = "fas fa-tags"></i>
-            {% for tag in post.tags.iterator %}
-                <a href="{{ tag.get_absolute_url }}">{{ tag }}</a>
-            {% endfor %}
+            {% if post.tags.exists %}
+                <i class="fas fa-tags"></i>
+                {% for tag in post.tags.iterator %}
+                    <a href="{{ tag.get_absolute_url }}"><span class="badge badge-pill badge-light">{{ tag }}</span></a>
+                {% endfor %}
+                <br/>
+                <br/>
+            {% endif %}
 
         {% endif %}
         {% if user.is_authenticated and user == post.author %}
-            <a href="/blog/post_update/{{ post.pk }}">글 수정하기</a>
+            <a class="btn btn-info btn-sm float-right" href="/blog/post_update/{{ post.pk }}" role="button"><i class="fas fa-pen"><i/>글 수정하기</a>
 
         {% endif %}
 
