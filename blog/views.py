@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CommentForm
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 # 매개변수랑 render에 첫번째 인자는 request 외워
 class PostUpdate(LoginRequiredMixin, UpdateView):
@@ -134,6 +135,17 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
             return super(CommentUpdate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionError
+
+
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    post = comment.post
+    if request.user.is_authenticated and request.user == comment.author:
+        comment.delete()
+        return redirect(post.get_absolute_url())
+    else:
+        raise PermissionError
+        
 # 정적 FBV
 #def index(request):
 #    posts = Post.Objects.all()
