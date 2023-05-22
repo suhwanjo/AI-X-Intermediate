@@ -1,20 +1,129 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
+<!--    <style>-->
+<!--    &lt;!&ndash;'바글바글' 커뮤니티&ndash;&gt;-->
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            color: #3C91E6;-->
+<!--            font-size: 50px;-->
+<!--        }-->
+
+<!--    &lt;!&ndash;사용자 맞춤 단계별 댓글 순화 서비스 '바글바글'입니다. '바글바글'의 뜻은 '바르게 글쓰고 바르게 글읽기' 입니다.&ndash;&gt;-->
+<!--        h2 {text-align: center;-->
+<!--            color: #3C91E6;-->
+<!--        }-->
+
+<!--        .h1_size {-->
+<!--          position: relative;-->
+<!--          top: 200px;-->
+<!--        }-->
+
+<!--        .h2_size {-->
+<!--          position: relative;-->
+<!--          top: 250px;-->
+<!--        }-->
+
+<!--    &lt;!&ndash;버튼 생성 함수&ndash;&gt;-->
+<!--        .button {-->
+<!--          display: inline-block;-->
+<!--          background-color: skyblue;-->
+<!--          color: white;-->
+<!--          padding: 10px 20px;-->
+<!--          text-align: center;-->
+<!--          text-decoration: none;-->
+<!--          cursor: pointer;-->
+<!--          border-radius: 4px;-->
+<!--          border: none;-->
+
+<!--          position: relative;-->
+<!--          top: 300px;-->
+<!--          display :inline-block;-->
+<!--        }-->
+
+<!--    &lt;!&ndash;버튼 색상&ndash;&gt;-->
+<!--        .button:hover {-->
+<!--          background-color: #3C91E6;-->
+<!--        }-->
+<!--    </style>-->
+
 <head>
     <meta charset="UTF-8">
     <title>메인페이지</title>
+
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/main.css' %}" media="screen">
+
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<nav>
-    <a href="/blog">Blog</a>
-</nav>
-<h1>클라우드프로그래밍 꿀잼</h1>
-{% for post in recent_posts %}
-    <div>
-        <h4><a href="{{ post.get_absolute_url }}">
-        {{ post.title }} by {{ post.author }}</a></h4>
-        <p>{{ post.content | truncatewords:30 | safe }}</p>
+
+{% include 'blog/navbar.html' %}
+
+<!--<nav>-->
+<!--    <a href="/blog">Blog</a>-->
+<!--</nav>-->
+
+<div class="find-btn">
+    <a href="/blog" class="w-btn-outline w-btn-blue-outline" type="button">Join the '바글바글'</a>
+</div>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-6 text-light">
+                <h1 class="mt-5">'바글바글' 커뮤니티</h1>
+                <p>사용자 맞춤 단계별 댓글 순화 서비스 '바글바글'입니다. <br>
+                    '바글바글'의 뜻은 '바르게 글쓰고 바르게 글읽기' 입니다.</p>
+            </div>
+            <div class="col-lg-5 mt-5">
+                <h2 class="text-light">Blog - Recent posts</h2>
+                {% for post in recent_posts %}
+                <div class="card mt-1">
+                    <div class="card-body">
+                        <h6><a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark">{{ post.title }}</a></h6>
+                        <span class="badge badge-pill badge-light float-right">
+                            {{ post.author.username }}
+                            &nbsp;
+                            &nbsp;
+                            {{ post.created_at }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="card mt-1">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-{% endfor %}
+</section>
+
+<div class="fixed-bottom">
+    {% include 'blog/footer.html' %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!--{% for post in recent_posts %}-->
+<!--    <div class="bg4">-->
+<!--        <h4><a href="{{ post.get_absolute_url }}">-->
+<!--        {{ post.title }} by {{ post.author }}</a></h4>-->
+<!--        <p>{{ post.content | truncatewords:30 | safe }}</p>-->
+<!--    </div>-->
+
+
+<!--{% endfor %}-->
 </body>
 </html>

@@ -1,0 +1,64 @@
+body{
+    background: url('/static/single_pages/images/amsterdam_sky.jpg') no-repeat center center fixed;
+    /*background: url('/static/single_pages/images/Constellation.jpg') no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    /*background-repeat: no-repeat;*/
+}
+
+section{
+    margin-bottom: 150px;
+}
+
+.find-btn{
+	text-align: center;
+}
+
+
+button {
+    margin: 20px;
+}
+
+.w-btn-outline {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    top: 450px;
+}
+.w-btn-outline:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.w-btn-outline:active {
+    transform: scale(1.5);
+}
+
+
+.w-btn-blue-outline {
+    border: 3px solid #6aafe6;
+    color: #6e6e6e;
+}
+.w-btn-blue-outline:hover {
+    background-color: #6aafe6;
+    color: #d4dfe6;
+}
+
+
+/*
+.h1_size {
+  position: relative;
+  top: 200px;
+}
+
+.h2_size {
+  position: relative;
+  top: 250px;
+}
