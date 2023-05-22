@@ -35,7 +35,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=100)
     content = MarkdownxField()  # 내용
 
     head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
