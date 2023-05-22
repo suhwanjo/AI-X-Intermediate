@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
+
+from django_project.settings import BAD_WORDS
 from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CommentForm
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from .baggle import Baggle
 
 # 매개변수랑 render에 첫번째 인자는 request 외워
 class PostUpdate(LoginRequiredMixin, UpdateView):
@@ -35,6 +38,7 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         else:
             return redirect('/blog/')
         # 매번 보내는 것보단 해당하는 오류에 대해 알려주는 게 좋음
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PostCreate, self).get_context_data()
         context['categories'] = Category.objects.all()
@@ -66,7 +70,7 @@ class PostDetail(DetailView):
         return context
 
 
-def categories_page(request,slug):
+def categories_page(request, slug):
     if slug == 'no-category':
         category = '미분류'
         post_list = Post.objects.filter(category=None)
@@ -106,10 +110,20 @@ def add_comment(request, pk):
             comment_temp = comment_form.save(commit=False)
             comment_temp.post = post
             comment_temp.author = request.user
+
+            baggle = Baggle(bad_words=BAD_WORDS)  # 욕설 단어 리스트 설정
+
+            # 댓글 처리 및 출력 값 얻기
+            step22_result, step33_result, step44_result = baggle.process_comments(comment_temp.content)
+            comment_temp.step22_result=step22_result
+            comment_temp.step33_result=step33_result
+            comment_temp.step44_result=step44_result
             comment_temp.save()
+
             return redirect(post.get_absolute_url())
         else:
             raise PermissionError
+
 
 class PostSearch(PostList):
     paginate_by = None
@@ -122,10 +136,11 @@ class PostSearch(PostList):
         return post_list
 
     def get_context_data(self, **kwargs):
-        context = super(PostSearch,self).get_context_data()
+        context = super(PostSearch, self).get_context_data()
         q = self.kwargs['q']
         context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
         return context
+
 
 class CommentUpdate(LoginRequiredMixin, UpdateView):
     model = Comment
@@ -146,13 +161,14 @@ def delete_comment(request, pk):
         return redirect(post.get_absolute_url())
     else:
         raise PermissionError
-        
+
+
 # 정적 FBV
-#def index(request):
+# def index(request):
 #    posts = Post.Objects.all()
 #    return render(request,'blog/index.html'{'posts':posts})
 #
-#def single_post_page(request,post_num):
+# def single_post_page(request,post_num):
 #    post=Post.objects.get(pk=post_num)
 #    return render(request, 'blog/post_detail.html', {'post':post})
 # 먼저 url 패턴에 잘 걸리는지 확인하고 함수 작성

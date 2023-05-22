@@ -70,6 +70,16 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    step22_result = models.TextField()
+    step33_result = models.TextField()
+    step44_result = models.TextField()
+
+    analyze_comment = models.TextField()
+    adv_result1 = models.TextField()
+    adv_result2 = models.TextField()
+
+    explanation = models.TextField()
+
     def __str__(self):
         return f'{self.author}::{self.content}'
 
