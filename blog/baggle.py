@@ -1,5 +1,5 @@
 import openai
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 openai.api_key = OPENAI_API_KEY
 class Baggle:
 

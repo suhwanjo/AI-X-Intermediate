@@ -162,6 +162,20 @@ def delete_comment(request, pk):
     else:
         raise PermissionError
 
+def get_step22_results(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request,"blog/step22.html",{"post":post})
+
+def get_step33_results(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request,"blog/step33.html",{"post":post})
+
+def get_step44_results(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request,"blog/step44.html",{"post":post})
+
+
+
 
 # 정적 FBV
 # def index(request):

@@ -97,9 +97,9 @@
         </div>
       {% if post.comment_set.exists %}
        <!-- 순화버튼 -->
-        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step22-btn" href="/blog/{{post.pk }}/step22"/>2단계순화
+      <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step-btn" href="/blog/{{post.pk }}"/>적용안함
         </a>
-        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step33-btn" href="/blog/{{post.pk }}/step33"/>3단계순화
+       <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step22-btn" href="/blog/{{post.pk }}/step22"/>2단계순화
         </a>
         <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step44-btn" href="/blog/{{post.pk }}/step44"/>4단계순화
         </a>
@@ -148,7 +148,7 @@
                         </div>
                   {% endif %}
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
-                <p>{{ comment.content | linebreaks }}</p>
+                <p>{{ comment.step33_result | linebreaks }}</p>
               {% if comment.created_at != comment.updated_at %}
                   <p class="text-muted float-right"><small>Updated: {{ comment.updated_at }}</small></p>
               {% endif %}

@@ -13,4 +13,7 @@ urlpatterns = [
     path('search/<str:q>/', views.PostSearch.as_view()),
     path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),
     path('delete_comment/<int:pk>/', views.delete_comment),
+    path('<int:pk>/step22/',views.get_step22_results),
+    path('<int:pk>/step33/',views.get_step33_results),
+    path('<int:pk>/step44/',views.get_step44_results)
 ]
