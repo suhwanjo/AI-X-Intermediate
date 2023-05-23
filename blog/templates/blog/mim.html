@@ -115,7 +115,7 @@
                       <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">삭제
                           <a/>
                           <!-- Add refresh button -->
-                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >해석</a>
+                          <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}">해석</a>
                       </div>
                         <!-- Hidden div for the selection window -->
                         <div id="purification-window" style="display: none;">
@@ -147,6 +147,7 @@
                             </div>
                         </div>
                   {% endif %}
+
                     <!-- Modal -->
                         <div class="modal fade" id="mimmodal-{{ comment.pk }}" tabindex="-1" aria-labelledby="mimmodalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -166,8 +167,16 @@
                             </div>
                         </div>
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
-                <p>{{ comment.content | linebreaks }}</p>
-                  <p>{{ mim }}</p>
+
+                    {% if comment.pk == mimcomment.pk %}
+                        <p>{{ comment.content | linebreaks }}</p>
+                        위 댓글은
+                        <p>{{ mim }}</p>
+                    {% else %}
+                        <p>{{ comment.content | linebreaks }}</p>
+                    {% endif %}
+
+
 
               {% if comment.created_at != comment.updated_at %}
                   <p class="text-muted float-right"><small>Updated: {{ comment.updated_at }}</small></p>
