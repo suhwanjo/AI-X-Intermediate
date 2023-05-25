@@ -66,19 +66,27 @@
 <!--</nav>-->
 
 <div class="find-btn">
-    <a href="/blog" class="w-btn-outline w-btn-blue-outline" type="button">Join the '바글바글'</a>
+    <a href="/blog" class="w-btn-outline w-btn-blue-outline" type="button" style="top:550px;">Join the '바글바글'</a>
 </div>
 
 <section>
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-6 text-light">
-                <h1 class="mt-5">'바글바글' 커뮤니티</h1>
-                <p>사용자 맞춤 단계별 댓글 순화 서비스 '바글바글'입니다. <br>
-                    '바글바글'의 뜻은 '바르게 글쓰고 바르게 글읽기' 입니다.</p>
+                <h1 style="font-size:50px; font-weight: BOLD;" class="mt-5">'바글바글' 커뮤니티</h1>
+                <p style="font-size: 20px">사용자 맞춤 단계별 댓글 순화 서비스 '바글바글'입니다. <br>
+                    '바글바글'의 뜻은 '바르게 글쓰고 바르게 글읽기' 입니다.</p><br>
+                <h2 style="font-weight: BOLD; color:Gainsboro;">'바글바글' 단계 설명</h2>
+                <p style="font-size: 20px; color:Gainsboro;">
+                    1단계: 순화 적용 안함. <br>
+                    2단계: 욕설&비속어 필터링. <br>
+                    3단계: 욕설&비속어 순화 <br>
+                    4단계: 공격적인 표현 순화 <br>
+                    <p style="font-size:13.5px; color:MidnightBlue; font-weight:Bold;">주의사항: 공격적이지 않은 댓글에 대한 4단계 순화는 제대로 작동하지 않을 수 있습니다.</p>
+                </p>
             </div>
             <div class="col-lg-5 mt-5">
-                <h2 class="text-light">Blog - Recent posts</h2>
+                <h2 class="text-light">Recent posts</h2>
                 {% for post in recent_posts %}
                 <div class="card mt-1">
                     <div class="card-body">
@@ -92,11 +100,11 @@
                     </div>
                 </div>
                 {% endfor %}
-                <div class="card mt-1">
-                    <div class="card-body">
-                        This is some text within a card body.
-                    </div>
-                </div>
+<!--                <div class="card mt-1">-->
+<!--                    <div class="card-body">-->
+<!--                        This is some text within a card body.-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
