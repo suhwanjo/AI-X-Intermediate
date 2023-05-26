@@ -1,8 +1,4 @@
 import openai
-OPENAI_API_KEY = ""
-openai.api_key = OPENAI_API_KEY
-
-
 class Baggle:
 
     def __init__(self, bad_words, slang_words):
@@ -32,6 +28,7 @@ class Baggle:
     # 3단계 순화 (욕설 변형)
 
     def step33(self, inp):
+        openai.api_key = ""
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자 입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
@@ -59,6 +56,7 @@ class Baggle:
     # 4단계 순환 (모욕적 변환 제거)
 
     def step44(self, inp):
+        openai.api_key = ""
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자 입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
