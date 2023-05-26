@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django_project.settings import BAD_WORDS,SLANG_WORDS
+from django_project.settings import BAD_WORDS,SLANG_WORDS,MIM_WORDS
 from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -111,7 +111,7 @@ def add_comment(request, pk):
             comment_temp.post = post
             comment_temp.author = request.user
 
-            baggle = Baggle(BAD_WORDS,SLANG_WORDS)  # 욕설 단어 리스트 설정
+            baggle = Baggle(BAD_WORDS,SLANG_WORDS,MIM_WORDS)  # 욕설 단어 리스트 설정
 
             # 댓글 처리 및 출력 값 얻기
             step22_result, step33_result, step44_result = baggle.process_comments(comment_temp.content)
@@ -177,7 +177,7 @@ def get_step44_results(request, pk):
 def mim_explanation(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     post = comment.post
-    baggle = Baggle(BAD_WORDS,SLANG_WORDS)
+    baggle = Baggle(BAD_WORDS,SLANG_WORDS,MIM_WORDS)
     mim = baggle.process_explain(comment.content)
     return render(request,"blog/mim.html",{"post":post,"mim":mim,"mimcomment":comment})
 

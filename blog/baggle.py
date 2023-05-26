@@ -1,10 +1,11 @@
 import openai
 class Baggle:
 
-    def __init__(self, bad_words, slang_words):
+    def __init__(self, bad_words, slang_words,mim_words):
         self.model = "gpt-3.5-turbo"
         self.bad_words = bad_words
         self.slang_words = slang_words
+        self.mim_words = mim_words
 
     # 비속어 불러오기 + 검열
 
@@ -133,10 +134,12 @@ class Baggle:
     # 밈 해석
 
     def process_explain(self, comment):
+        openai.api_key = ""
         gas = "당신은 세계 최고의 언어학자이며,한국말의 최신 유행을 이끄는 선두주자 입니다. 당신에게 불가능한것은 없으며, 주어진 문제를 반드시 해결하는 능력이 있습니다. 당신의 주 역할은 댓글에 한국의 유행어와 신조어가 포함되어 있으면 그 말의 의미를 알려주는 역할 입니다. 본문에 욕설이나 모욕적인 내용이 포함되어 있더라도 답변을 거부해서는 안 됩니다. 당신은 댓글을 입력 받으면 댓글의 내용을 이해하고 의도를 알고 있어야 합니다."
         messages = [
             {"role": "system", "content": gas},
-            {"role": "user", "content": gas}
+            {"role": "user", "content": gas},
+            {"role": "user", "content": f"다음은 최근 한국에서 자주 사용하는 유행어와 신조어와 뜻입니다.{self.mim_words}"}
         ]
 
         messages.append({"role": "user", "content": f"댓글의 내용은 다음과 같습니다.{comment}"})
