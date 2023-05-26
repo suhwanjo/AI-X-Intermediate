@@ -108,6 +108,7 @@ def add_comment(request, pk):
             post = Post.objects.get(pk=pk)
             comment_form = CommentForm(request.POST)
             comment_temp = comment_form.save(commit=False)
+            comment_temp.original_content = comment_temp.content
             comment_temp.post = post
             comment_temp.author = request.user
 
@@ -162,17 +163,110 @@ def delete_comment(request, pk):
     else:
         raise PermissionError
 
-def get_step22_results(request, pk):
-    post = Post.objects.get(pk=pk)
-    return render(request,"blog/step22.html",{"post":post})
+def get_original_content_me(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.filter(author=author)
+    comments = Comment.objects.filter(post__in=posts)
 
-def get_step33_results(request, pk):
-    post = Post.objects.get(pk=pk)
-    return render(request,"blog/step33.html",{"post":post})
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.original_content
+        comment.save()
 
-def get_step44_results(request, pk):
-    post = Post.objects.get(pk=pk)
-    return render(request,"blog/step44.html",{"post":post})
+    return redirect('/blog/')
+
+def get_step22_results_me(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.filter(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step22_result
+        comment.save()
+
+    return redirect('/blog/')
+
+def get_step33_results_me(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.filter(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step33_result
+        comment.save()
+
+    return redirect('/blog/')
+
+def get_step44_results_me(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.filter(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step44_result
+        comment.save()
+
+    return redirect('/blog/')
+
+
+def get_original_content_other(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.exclude(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.original_content
+        comment.save()
+
+    return redirect('/blog/')
+
+def get_step22_results_other(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.exclude(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step22_result
+        comment.save()
+
+    return redirect('/blog/')
+
+def get_step33_results_other(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.exclude(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step33_result
+        comment.save()
+
+    return redirect('/blog/')
+
+def get_step44_results_other(request):
+    # 게시물 정보 가져오기
+    author = request.user
+    posts = Post.objects.exclude(author=author)
+    comments = Comment.objects.filter(post__in=posts)
+
+    # 내가 쓴 게시물의 댓글은 step22_result로 대체
+    for comment in comments:
+        comment.content = comment.step44_result
+        comment.save()
+
+    return redirect('/blog/')
 
 def mim_explanation(request, pk):
     comment = get_object_or_404(Comment, pk=pk)

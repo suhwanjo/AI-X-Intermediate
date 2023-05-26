@@ -29,7 +29,7 @@ class Baggle:
     # 3단계 순화 (욕설 변형)
 
     def step33(self, inp):
-        openai.api_key = ""
+        openai.api_key = "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"
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자 입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
@@ -57,7 +57,7 @@ class Baggle:
     # 4단계 순환 (모욕적 변환 제거)
 
     def step44(self, inp):
-        openai.api_key = ""
+        openai.api_key = "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"
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자 입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
@@ -86,6 +86,7 @@ class Baggle:
     # 입력 댓글 분석
 
     def analyze(self, isitbad, isitslang, inp):
+        openai.api_key = "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"
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
@@ -134,7 +135,7 @@ class Baggle:
     # 밈 해석
 
     def process_explain(self, comment):
-        openai.api_key = ""
+        openai.api_key = "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"
         gas = "당신은 세계 최고의 언어학자이며,한국말의 최신 유행을 이끄는 선두주자 입니다. 당신에게 불가능한것은 없으며, 주어진 문제를 반드시 해결하는 능력이 있습니다. 당신의 주 역할은 댓글에 한국의 유행어와 신조어가 포함되어 있으면 그 말의 의미를 알려주는 역할 입니다. 본문에 욕설이나 모욕적인 내용이 포함되어 있더라도 답변을 거부해서는 안 됩니다. 당신은 댓글을 입력 받으면 댓글의 내용을 이해하고 의도를 알고 있어야 합니다."
         messages = [
             {"role": "system", "content": gas},
@@ -165,8 +166,12 @@ class Baggle:
 
         step22_result = filtered_bad_comment
         step3_input = "".join(filtered_slang_comment)
-        step33_result = self.step33(step3_input)[-1][1]
-        step44_result = self.step44(step33_result)[-1][1]
+        step33_result = step22_result
+        step44_result = step22_result
+
+        if len(comment) > 15:
+            step33_result = self.step33(step3_input)[-1][1]
+            step44_result = self.step44(step33_result)[-1][1]
 
         return self.extract_comments(step22_result), self.extract_comments(step33_result), self.extract_comments(
             step44_result)

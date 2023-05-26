@@ -3,6 +3,32 @@
                 {% if user.is_authenticated %}
                     {% if user.is_superuser or user.is_staff %}
                         <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button"><i class="fas fa-pen"></i>글 쓰기</a>
+                        <!-- Default dropend button -->
+                        <ul class="navbar-nav ml-auto" style="display: flex; flex-direction: row;">
+                        <li class="nav-item dropdown" style="margin-left: 380px;">
+                            <a class="nav-link dropdown-toggle" href="#" id="cleanmeDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                나에 대한 순화 단계
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="cleanmeDropdownMenuLink">
+                                <a class="dropdown-item" href="/blog/original_me/">순화없음</a>
+                                <a class="dropdown-item" href="/blog/step22_me/">2단계순화</a>
+                                <a class="dropdown-item" href="/blog/step33_me/">3단계순화</a>
+                                <a class="dropdown-item" href="/blog/step44_me/">4단계순화</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown" style="margin-left: 20px;">
+                            <a class="nav-link dropdown-toggle" href="#" id="cleanotherDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                남에 대한 순화 단계
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="cleanotherDropdownMenuLink">
+                                <a class="dropdown-item" href="/blog/original_other/">순화없음</a>
+                                <a class="dropdown-item" href="/blog/step22_other/">2단계순화</a>
+                                <a class="dropdown-item" href="/blog/step33_other/">3단계순화</a>
+                                <a class="dropdown-item" href="/blog/step44_other/">4단계순화</a>
+                            </div>
+                        </li>
+                        </ul>
                 {% endif %}
                 {% endif %}
                 <h1>자유게시판
@@ -39,5 +65,7 @@
                     </div>
                 </div>
                 {% endfor %}
+
+
 {% endblock %}
 

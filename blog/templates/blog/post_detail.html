@@ -97,12 +97,6 @@
         </div>
       {% if post.comment_set.exists %}
        <!-- 순화버튼 -->
-        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step22-btn" href="/blog/{{post.pk }}/step22"/>2단계순화
-        </a>
-        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step33-btn" href="/blog/{{post.pk }}/step33"/>3단계순화
-        </a>
-        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step44-btn" href="/blog/{{post.pk }}/step44"/>4단계순화
-        </a>
           {% for comment in post.comment_set.iterator %}
         <!-- Single Comment -->
             <div class="media mb-4" id="comment-{{ comment.pk }}">
