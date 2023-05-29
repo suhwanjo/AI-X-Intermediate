@@ -83,6 +83,8 @@ class Comment(models.Model):
 
     explanation = models.TextField()
 
+    aggression = models.TextField(null=True)
+
     def __str__(self):
         return f'{self.author}::{self.content}'
 

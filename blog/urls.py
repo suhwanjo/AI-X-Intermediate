@@ -9,6 +9,7 @@ urlpatterns = [
     path('post_update/<int:pk>', views.PostUpdate.as_view()),
     path('<int:pk>/', views.PostDetail.as_view()),
     path('<int:pk>/add_comment', views.add_comment),
+    path('<int:pk>/add_aggression', views.add_aggression),
     path('tag/<str:slug>/', views.tag_page),
     path('search/<str:q>/', views.PostSearch.as_view()),
     path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),

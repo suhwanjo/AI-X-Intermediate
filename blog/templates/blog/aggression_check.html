@@ -76,7 +76,9 @@
 
         <hr>
     </div>
-
+    댓글"{{ comment.aggression }}"에 대한 분석 결과
+    </br>
+    {{ analyze_comment }}
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
@@ -85,24 +87,17 @@
               {% if user.is_authenticated %}
             <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_comment"> {% csrf_token %}
               <div class="form-group">
-                  {{ comment | crispy }}
-                <textarea class="form-control" rows="3"></textarea>
+                  {{ comment_form | crispy }}
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+              <button type="submit" class="btn btn-primary">작성</button>
               {% else %}
               <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
               {% endif %}
           </div>
         </div>
-      {% if post.comment_set.exists %}
+    </div>
+          {% if post.comment_set.exists %}
        <!-- 순화버튼 -->
-{#        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step22-btn" href="/blog/{{post.pk }}/step22"/>2단계순화#}
-{#        </a>#}
-{#        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step33-btn" href="/blog/{{post.pk }}/step33"/>3단계순화#}
-{#        </a>#}
-{#        <a role="button" class="btn btn-sm btn-primary" id="comment-{{ post.pk }}-step44-btn" href="/blog/{{post.pk }}/step44"/>4단계순화#}
-{#        </a>#}
           {% for comment in post.comment_set.iterator %}
         <!-- Single Comment -->
             <div class="media mb-4" id="comment-{{ comment.pk }}">
@@ -115,7 +110,7 @@
                       <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">삭제
                           <a/>
                           <!-- Add refresh button -->
-                          <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}">해석</a>
+                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >해석</a>
                       </div>
                         <!-- Hidden div for the selection window -->
                         <div id="purification-window" style="display: none;">
@@ -147,7 +142,6 @@
                             </div>
                         </div>
                   {% endif %}
-
                     <!-- Modal -->
                         <div class="modal fade" id="mimmodal-{{ comment.pk }}" tabindex="-1" aria-labelledby="mimmodalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -167,16 +161,8 @@
                             </div>
                         </div>
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
-
-                    {% if comment.pk == mimcomment.pk %}
-                        <p>{{ comment.content | linebreaks }}</p>
-                        위 댓글은
-                        <p>{{ mim }}</p>
-                    {% else %}
-                        <p>{{ comment.content | linebreaks }}</p>
-                    {% endif %}
-
-
+                <p>{{ comment.content | linebreaks }}</p>
+                  <p>{{ mim }}</p>
 
               {% if comment.created_at != comment.updated_at %}
                   <p class="text-muted float-right"><small>Updated: {{ comment.updated_at }}</small></p>
@@ -186,5 +172,5 @@
             </div>
           {% endfor %}
       {% endif %}
-      </div>
+
 {% endblock %}

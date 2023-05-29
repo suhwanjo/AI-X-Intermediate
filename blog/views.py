@@ -125,6 +125,25 @@ def add_comment(request, pk):
         else:
             raise PermissionError
 
+def add_aggression(request, pk):
+    if not request.user.is_authenticated:
+        raise PermissionError
+    else:
+        if request.method == 'POST':
+            post = Post.objects.get(pk=pk)
+            comment_form = CommentForm(request.POST)
+            comment_temp = comment_form.save(commit=False)
+            comment_temp.post = post
+            comment_temp.author = request.user
+            comment_temp.aggression=comment_temp.content
+            baggle = Baggle(BAD_WORDS,SLANG_WORDS,MIM_WORDS)  # 욕설 단어 리스트 설정
+
+            # 댓글 처리 및 출력 값 얻기
+            analyze_comment = baggle.process_advisor(comment_temp.content)
+
+            return render(request,'blog/aggression_check.html',{'analyze_comment':analyze_comment,'post':post,'comment':comment_temp,'comment_form':comment_form})
+        else:
+            raise PermissionError
 
 class PostSearch(PostList):
     paginate_by = None

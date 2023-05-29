@@ -188,6 +188,6 @@ class Baggle:
         analyze_comment = self.analyze(isitbad, isitslang, original)[-1][1]
 
         # 조언(순화)
-        step22_result, adv_result1, adv_result2 = self.process_comments(comment)
+        #step22_result, adv_result1, adv_result2 = self.process_comments(comment)
 
-        return analyze_comment, self.extract_comments(adv_result1), self.extract_comments(adv_result2)
+        return analyze_comment
