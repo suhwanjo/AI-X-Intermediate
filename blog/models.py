@@ -85,8 +85,16 @@ class Comment(models.Model):
 
     aggression = models.TextField(null=True)
 
+
+
     def __str__(self):
         return f'{self.author}::{self.content}'
 
     def get_absolute_url(self):
         return f'{self.post.get_absolute_url()}#comment-{self.pk}'
+
+class Me_Now_step(models.Model) :
+    me_now_step = models.TextField(null=True)
+
+class Other_Now_step(models.Model) :
+    other_now_step = models.TextField(null=True)

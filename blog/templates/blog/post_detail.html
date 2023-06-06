@@ -80,20 +80,20 @@
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+          <h5 class="card-header">댓글작성</h5>
           <div class="card-body">
               {% if user.is_authenticated %}
-            <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_comment"> {% csrf_token %}
+            <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_comment?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}"> {% csrf_token %}
               <div class="form-group">
                   {{ comment | crispy }}
               </div>
               <button type="submit" class="btn btn-primary">작성</button>
             </form>
-                  <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_aggression"> {% csrf_token %}
+                  <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_aggression?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}"> {% csrf_token %}
               <div class="form-group">
                   {{ comment | crispy }}
               </div>
-              <button type="submit" class="btn btn-primary">공격성 확인하기</button>
+              <button type="submit" class="btn btn-primary">공격성 확인</button>
             </form>
               {% else %}
               <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
@@ -109,12 +109,12 @@
               <div class="media-body">
                   {% if user.is_authenticated and comment.author == user %}
                       <div class="float-right">
-                      <a role="button" class="btn btn-sm btn-info" id="comment-{{ comment.pk }}-update-btn" href="/blog/update_comment/{{ comment.pk }}"/>수정
+                      <a role="button" class="btn btn-sm btn-info" id="comment-{{ comment.pk }}-update-btn" href="/blog/update_comment/{{ comment.pk }}?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}"/>수정
                       <a/>
-                      <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">삭제
+                      <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}">삭제
                           <a/>
                           <!-- Add refresh button -->
-                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >해석</a>
+                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >설명</a>
                       </div>
                         <!-- Hidden div for the selection window -->
                         <div id="purification-window" style="display: none;">
@@ -151,14 +151,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="mimmodalLabel">댓글의 의미를 알려드릴까요?</h5>
+                                        <h5 class="modal-title" id="mimmodalLabel">설명충두둥등장</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         {{ comment.content }}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                                         <a role="button" class="btn btn-dark" href="/blog/mim/{{ comment.pk }}/">보기</a>
                                     </div>
                                 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django_project.settings import BAD_WORDS,SLANG_WORDS,MIM_WORDS
-from .models import Post, Category, Tag, Comment
+from .models import Post, Category, Tag, Comment, Me_Now_step, Other_Now_step
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CommentForm
@@ -193,7 +193,11 @@ def get_original_content_me(request):
         comment.content = comment.original_content
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step1'] = '적용안함'
+    previous_step11 = request.session.get('previous_step2')
+
+    redirect_url = '/blog/?now_step=적용안함&now_step2={}'.format(request.GET.get('now_step2')or previous_step11)
+    return redirect(redirect_url)
 
 def get_step22_results_me(request):
     # 게시물 정보 가져오기
@@ -206,7 +210,12 @@ def get_step22_results_me(request):
         comment.content = comment.step22_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step1'] = '1단계'
+    previous_step11 = request.session.get('previous_step2')
+
+    redirect_url = '/blog/?now_step=1단계&now_step2={}'.format(request.GET.get('now_step2')or previous_step11)
+
+    return redirect(redirect_url)
 
 def get_step33_results_me(request):
     # 게시물 정보 가져오기
@@ -219,7 +228,12 @@ def get_step33_results_me(request):
         comment.content = comment.step33_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step1'] = '2단계'
+    previous_step11 = request.session.get('previous_step2')
+
+    redirect_url = '/blog/?now_step=2단계&now_step2={}'.format(request.GET.get('now_step2')or previous_step11)
+
+    return redirect(redirect_url)
 
 def get_step44_results_me(request):
     # 게시물 정보 가져오기
@@ -232,7 +246,12 @@ def get_step44_results_me(request):
         comment.content = comment.step44_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step1'] = '3단계'
+    previous_step11 = request.session.get('previous_step2')
+
+    redirect_url = '/blog/?now_step=3단계&now_step2={}'.format(request.GET.get('now_step2')or previous_step11)
+
+    return redirect(redirect_url)
 
 
 def get_original_content_other(request):
@@ -246,7 +265,12 @@ def get_original_content_other(request):
         comment.content = comment.original_content
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step2'] = '적용안함'
+    previous_step22 = request.session.get('previous_step1')
+
+    redirect_url = '/blog/?now_step={}&now_step2=적용안함'.format(request.GET.get('now_step')or previous_step22)
+
+    return redirect(redirect_url)
 
 def get_step22_results_other(request):
     # 게시물 정보 가져오기
@@ -259,7 +283,12 @@ def get_step22_results_other(request):
         comment.content = comment.step22_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step2'] = '1단계'
+    previous_step22 = request.session.get('previous_step1')
+
+    redirect_url = '/blog/?now_step={}&now_step2=1단계'.format(request.GET.get('now_step')or previous_step22)
+
+    return redirect(redirect_url)
 
 def get_step33_results_other(request):
     # 게시물 정보 가져오기
@@ -272,7 +301,12 @@ def get_step33_results_other(request):
         comment.content = comment.step33_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step2'] = '2단계'
+    previous_step22 = request.session.get('previous_step1')
+
+    redirect_url = '/blog/?now_step={}&now_step2=2단계'.format(request.GET.get('now_step')or previous_step22)
+
+    return redirect(redirect_url)
 
 def get_step44_results_other(request):
     # 게시물 정보 가져오기
@@ -285,7 +319,12 @@ def get_step44_results_other(request):
         comment.content = comment.step44_result
         comment.save()
 
-    return redirect('/blog/')
+    request.session['previous_step2'] = '3단계'
+    previous_step22 = request.session.get('previous_step1')
+
+    redirect_url = '/blog/?now_step={}&now_step2=3단계'.format(request.GET.get('now_step')or previous_step22)
+
+    return redirect(redirect_url)
 
 def mim_explanation(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
