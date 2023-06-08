@@ -93,10 +93,21 @@
           </div>
         </div>
     </div>
+    <div class = "border_red">
+        <!-- Add the mim-icon block -->
+        <div class="mim-icon">
+            <img src="/static/images/pgpg.png" alt="Mim Icon">
+            <span>공격성 확인기</span>
+            <p> {{ analyze_comment }}</p>
+        </div>
+    </div>
+
+
           {% if post.comment_set.exists %}
        <!-- 순화버튼 -->
           {% for comment in post.comment_set.iterator %}
         <!-- Single Comment -->
+            </br>
             <div class="media mb-4" id="comment-{{ comment.pk }}">
               <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
               <div class="media-body">

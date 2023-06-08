@@ -80,7 +80,7 @@
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+          <h5 class="card-header">댓글 작성</h5>
           <div class="card-body">
               {% if user.is_authenticated %}
             <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_comment"> {% csrf_token %}
@@ -88,7 +88,7 @@
                   {{ comment | crispy }}
                 <textarea class="form-control" rows="3"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">작성</button>
             </form>
               {% else %}
               <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
@@ -153,7 +153,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="mimmodalLabel">댓글의 의미를 알려드릴까요?</h5>
+                                        <h5 class="modal-title" id="mimmodalLabel">다음 댓글의 밈과 유행어의 의미를 알려드리겠습니다.</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
@@ -170,17 +170,27 @@
 
                     {% if comment.pk == mimcomment.pk %}
                         <p>{{ comment.content | linebreaks }}</p>
-                        </br>
-                        <p>{{ mim }}</p>
+                        <div class = "border_green">
+                        <!-- Add the mim-icon block -->
+                        <div class="mim-icon">
+                            <img src="/static/images/gpgp.png" alt="Mim Icon">
+                            <span>밈 해석기</span>
+                            <p> {{ mim }}</p>
+                        </div>
+                        </div>
                     {% else %}
                         <p>{{ comment.content | linebreaks }}</p>
                     {% endif %}
 
 
 
+
+
+
               {% if comment.created_at != comment.updated_at %}
                   <p class="text-muted float-right"><small>Updated: {{ comment.updated_at }}</small></p>
               {% endif %}
+
               </div>
 
             </div>

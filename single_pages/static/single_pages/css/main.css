@@ -1,6 +1,6 @@
-body{
-    background: url('/static/single_pages/images/amsterdam_sky.jpg') no-repeat center center fixed;
-    /*background: url('/static/single_pages/images/Constellation.jpg') no-repeat center center fixed;*/
+body {
+    background: url('/static/single_pages/images/game.jpg') no-repeat center center fixed;
+    /*background: url('/static/single_pages/images/game.jpg') no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -9,11 +9,11 @@ body{
 }
 
 section{
-    margin-bottom: 1 50px;
+    margin-bottom: 150px;
 }
 
 .find-btn{
-	text-align: center;
+   text-align: center;
 }
 
 
@@ -44,21 +44,138 @@ button {
 
 .w-btn-blue-outline {
     border: 3px solid #6aafe6;
-    color: #6e6e6e;
+    color: #d4dfe6;
 }
 .w-btn-blue-outline:hover {
     background-color: #6aafe6;
     color: #d4dfe6;
 }
 
-
-/*
-.h1_size {
-  position: relative;
-  top: 200px;
+.w-btn-yellow-outline {
+    border: 3px solid #1BEDC6;
+    color: #1BEDC6;
+}
+.w-btn-yellow-outline:hover {
+    background-color: #1BEDC6;
+    color: #1BEDC6;
 }
 
-.h2_size {
+
+
+
+
+
+
+:root {
+  --line-fill: #3498db;
+  --line-empty: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container-2 {
+  text-align: center;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
   position: relative;
-  top: 250px;
+  margin-bottom: 30px;
+  min-width: 350px;
+}
+
+.progress-container::before {
+  content: '';
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+.progress {
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+  border-style: dashed; /* 점선 스타일 추가 */
+  border-width: 4px; /* 점선의 두께 설정 */
+  border-spacing: 50px; /* 점선 간격 설정 */
+}
+
+
+
+
+.circle {
+  background-color: #fce205;
+  border-color: #fce205;
+  color: #999;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-empty);
+  transition: 0.4s ease;
+}
+
+.circle.active {
+  border-color: #FFDC46;
+}
+
+.btn {
+  background-color: var(--line-fill);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:disabled {
+  background-color: var(--line-empty);
+  cursor: not-allowed;
+}
+
+.speech-bubble {
+   position: relative;
+   background: #ffffff;
+   border-radius: .4em;
+}
+
+.speech-bubble:after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   width: 0;
+   height: 0;
+   border: 32px solid transparent;
+   border-top-color: #ffffff;
+   border-bottom: 0;
+   border-right: 0;
+   margin-left: -16px;
+   margin-bottom: -32px;
 }
