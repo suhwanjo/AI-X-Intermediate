@@ -14,8 +14,30 @@
         text-align: right;
     }
      .badge.text-bg-secondary {
-        background-color: dimgrey;
+        background-color: dimgray;
     }
+    .tooltip {
+        display: inline-block;
+        color: black;
+        font-weight: bold;
+    }
+
+    .tooltip-text {
+        display: none;
+        position: absolute;
+        max-width: 200px;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 0.8em;
+        color: white;
+        background: black;
+    }
+
+    .tooltip:hover .tooltip-text {
+        display: block;
+    }
+
     </style>
 
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
@@ -124,7 +146,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+
 
 </body>
 

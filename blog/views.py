@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django_project.settings import BAD_WORDS,SLANG_WORDS,MIM_WORDS
-from .models import Post, Category, Tag, Comment, Me_Now_step, Other_Now_step
+from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CommentForm
@@ -135,6 +135,7 @@ def add_aggression(request, pk):
             comment_temp = comment_form.save(commit=False)
             comment_temp.post = post
             comment_temp.author = request.user
+
             comment_temp.aggression=comment_temp.content
             baggle = Baggle(BAD_WORDS,SLANG_WORDS,MIM_WORDS)  # 욕설 단어 리스트 설정
 

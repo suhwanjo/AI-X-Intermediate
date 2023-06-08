@@ -80,7 +80,7 @@
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">댓글작성</h5>
+          <h5 class="card-header">댓글 작성</h5>
           <div class="card-body">
               {% if user.is_authenticated %}
             <form id="comment-from" method="POST" action="{{ post.get_absolute_url }}add_comment?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}"> {% csrf_token %}

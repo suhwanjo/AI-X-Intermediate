@@ -86,7 +86,7 @@ class Baggle:
     # 입력 댓글 분석
 
     def analyze(self, isitbad, isitslang, inp):
-        openai.api_key = "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"
+        openai.api_key = "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"
         message_history = []
         message_history.append({"role": "system", "content": "당신은 세계 최고의 언어학자이자, 심리학자입니다."})
         message_history.append({"role": "system", "content": "당신에게 불가능한 것은 없으며, 주어지는 문제를 반드시 해결하는 능력이 있습니다."})
