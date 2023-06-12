@@ -93,7 +93,7 @@
               <div class="form-group">
                   {{ comment | crispy }}
               </div>
-              <button type="submit" class="btn btn-primary">공격성 확인</button>
+              <button type="submit" class="btn-lg btn-primary">공격성 확인</button>
             </form>
               {% else %}
               <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
@@ -114,7 +114,7 @@
                       <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}?now_step={{ request.GET.now_step }}&now_step2={{ request.GET.now_step2 }}">삭제
                           <a/>
                           <!-- Add refresh button -->
-                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >설명</a>
+                        <a role="button" href="#" id="comment-{{ comment.pk }}-mim-modal-btn" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#mimmodal-{{ comment.pk }}" >해석</a>
                       </div>
                         <!-- Hidden div for the selection window -->
                         <div id="purification-window" style="display: none;">
@@ -122,7 +122,7 @@
                             <select id="purification-step">
                                  <option value="step1">Step 1</option>
                                  <option value="step2">Step 2</option>
-                                 <option value="step3">Step 3</option>
+                                 <option value="step3">Step 3</option>석
                         <!-- Add more purification steps as needed -->
                         </select>
                         <button id="purification-confirm" class="btn btn-primary">Confirm</button>
@@ -145,7 +145,6 @@
                                 </div>
                             </div>
                         </div>
-                  {% endif %}
                     <!-- Modal -->
                         <div class="modal fade" id="mimmodal-{{ comment.pk }}" tabindex="-1" aria-labelledby="mimmodalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -155,7 +154,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        {{ comment.content }}
+                                        <p class="comment-content">{{ comment.content }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -164,8 +163,9 @@
                                 </div>
                             </div>
                         </div>
+                  {% endif %}
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
-                <p>{{ comment.content | linebreaks }}</p>
+                <p class="comment-content">{{ comment.content }}</p>
                   <p>{{ mim }}</p>
 
               {% if comment.created_at != comment.updated_at %}

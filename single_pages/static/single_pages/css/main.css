@@ -1,6 +1,6 @@
-body {
+body{
     background: url('/static/single_pages/images/game.jpg') no-repeat center center fixed;
-    /*background: url('/static/single_pages/images/game.jpg') no-repeat center center fixed;*/
+    /*background: url('/static/single_pages/images/wallpapaerbetter.jpg') no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -78,13 +78,29 @@ button {
 .container-2 {
   text-align: center;
 }
+.line_container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+}
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
 
 .progress-container {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Added alignment */
   position: relative;
-  margin-bottom: 30px;
-  min-width: 350px;
+  margin-bottom: 10px; /* Adjusted margin */
+  min-width: 350px; /* Adjusted min-width */
+  max-width: 400px; /* Added max-width for centering */
+  margin-left: auto; /* Added margin for centering */
+  margin-right: auto; /* Added margin for centering */
 }
 
 .progress-container::before {
@@ -94,23 +110,24 @@ button {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  height: 4px;
+  height: 2px;
   width: 100%;
   z-index: -1;
 }
+
 .progress {
   background-color: black;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  height: 4px;
+  height: 2px;
   width: 0%;
   z-index: -1;
   transition: 0.4s ease;
-  border-style: dashed; /* 점선 스타일 추가 */
-  border-width: 4px; /* 점선의 두께 설정 */
-  border-spacing: 50px; /* 점선 간격 설정 */
+  border-style: dashed;
+  border-width: 6px;
+  border-spacing: 70px; /* Adjusted spacing */
 }
 
 
@@ -118,21 +135,23 @@ button {
 
 .circle {
   background-color: #fce205;
-  border-color: #fce205;
   color: #999;
   border-radius: 50%;
-  height: 70px;
-  width: 70px;
+  height: 55px; /* Adjusted height */
+  width: 55px; /* Adjusted width */
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid var(--line-empty);
+  border: 2px solid var(--line-empty);
   transition: 0.4s ease;
 }
+
+
 
 .circle.active {
   border-color: #FFDC46;
 }
+
 
 .btn {
   background-color: var(--line-fill);
@@ -141,10 +160,11 @@ button {
   border-radius: 6px;
   cursor: pointer;
   font-family: inherit;
-  padding: 8px 30px;
-  margin: 5px;
-  font-size: 14px;
+  padding: 6px 25px; /* Adjusted padding */
+  margin: 4px; /* Adjusted margin */
+  font-size: 13px; /* Adjusted font-size */
 }
+
 
 .btn:active {
   transform: scale(0.98);
@@ -159,23 +179,15 @@ button {
   cursor: not-allowed;
 }
 
-.speech-bubble {
-   position: relative;
-   background: #ffffff;
-   border-radius: .4em;
-}
+.gif-container {
+    position: fixed;
+      top: 77.5%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+        bottom: 10px;
+        right: 10px;
+        max-width: 800px;
+        z-index: 9999;
 
-.speech-bubble:after {
-   content: '';
-   position: absolute;
-   bottom: 0;
-   left: 50%;
-   width: 0;
-   height: 0;
-   border: 32px solid transparent;
-   border-top-color: #ffffff;
-   border-bottom: 0;
-   border-right: 0;
-   margin-left: -16px;
-   margin-bottom: -32px;
+  pointer-events: none; /* 이벤트 허용 */
 }

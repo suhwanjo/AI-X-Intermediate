@@ -157,7 +157,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        {{ comment.content }}
+                                        <p class="comment-content">{{ comment.content }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -169,17 +169,17 @@
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
 
                     {% if comment.pk == mimcomment.pk %}
-                        <p>{{ comment.content | linebreaks }}</p>
+                        <p class="comment-content">{{ comment.content }}</p>
                         <div class = "border_green">
                         <!-- Add the mim-icon block -->
                         <div class="mim-icon">
                             <img src="/static/images/gpgp.png" alt="Mim Icon">
-                            <span>밈 해석기</span>
-                            <p> {{ mim }}</p>
+                            <span class="comment-content">밈 해석기</span>
+                            <p class="comment-content">{{ mim }}</p>
                         </div>
                         </div>
                     {% else %}
-                        <p>{{ comment.content | linebreaks }}</p>
+                        <p class="comment-content">{{ comment.content }}</p>
                     {% endif %}
 
 

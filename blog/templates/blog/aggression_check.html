@@ -97,8 +97,8 @@
         <!-- Add the mim-icon block -->
         <div class="mim-icon">
             <img src="/static/images/pgpg.png" alt="Mim Icon">
-            <span>공격성 확인기</span>
-            <p> {{ analyze_comment }}</p>
+            <span class="comment-content">공격성 확인기</span>
+            <p class="comment-content">{{ analyze_comment }}</p>
         </div>
     </div>
 
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                 <h5 class="mt-0">{{ comment.author }} &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small></h5>
-                <p>{{ comment.content | linebreaks }}</p>
+                <p class="comment-content">{{ comment.content }}</p>
                   <p>{{ mim }}</p>
 
               {% if comment.created_at != comment.updated_at %}
